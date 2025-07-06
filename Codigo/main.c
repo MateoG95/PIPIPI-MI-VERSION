@@ -21,11 +21,8 @@ const char* nombresArchivos[NUM_ZONAS] = {
     "../5 ZONAS/EL-CAMAL CSV.csv"
 };
 
-// Prototipos de funciones auxiliares
-void leerDatosCSV(const char* nombreArchivo, float datos[][4], int* cantidadEntradas);
+// Prototipo de función local
 void imprimirDatosZona(float datos[][4], int cantidadEntradas);
-void predecirNivelesFuturos(float datos[][4], int cantidad, float prediccion[4]);
-void imprimirPromediosHistoricosTodasLasZonas(float datos[NUM_ZONAS][30][4], int cantidadEntradas[NUM_ZONAS], const char* nombresZonas[NUM_ZONAS]);
 
 int main() {
     float datos[NUM_ZONAS][30][4]; // Máximo 30 entradas por zona
@@ -64,23 +61,40 @@ int main() {
         if (opcion == 1) {
             printf("\n--- Datos de la zona %s ---\n", nombresZonas[zona]);
             imprimirDatosZona(datos[zona], cantidadEntradas[zona]);
-            // Guardar datos actuales en reporte
-            exportarDatosReporte(datos[zona][cantidadEntradas[zona]-1], NULL, "reporte.txt");
+            exportarTodosDatosZona(nombresZonas[zona], datos[zona], cantidadEntradas[zona], "reporte.txt");
+            float promedios[4] = {0};
+            calcularPromediosHistoricos(datos[zona], cantidadEntradas[zona], promedios);
+            exportarDatosReporteCompleto(
+                nombresZonas[zona],
+                datos[zona][cantidadEntradas[zona]-1],
+                promedios,
+                NULL,
+                "reporte.txt"
+            );
         }
         else if (opcion == 2) {
             float promedios[4] = {0};
             calcularPromediosHistoricos(datos[zona], cantidadEntradas[zona], promedios);
-            exportarDatosReporte(promedios, NULL, "reporte.txt");
+            exportarDatosReporteCompleto(
+                nombresZonas[zona],
+                NULL,
+                promedios,
+                NULL,
+                "reporte.txt"
+            );
         }
         else if (opcion == 3) {
             float predicciones[4] = {0};
             predecirNivelesFuturos(datos[zona], cantidadEntradas[zona], predicciones);
-            emitirAlertas(predicciones);
-            generarRecomendaciones(datos[zona][cantidadEntradas[zona]-1], predicciones);
-            exportarDatosReporte(NULL, predicciones, "reporte.txt");
-        }
-        else {
-            printf("Opcion invalida.\n");
+            float promedios[4] = {0};
+            calcularPromediosHistoricos(datos[zona], cantidadEntradas[zona], promedios);
+            exportarDatosReporteCompleto(
+                nombresZonas[zona],
+                datos[zona][cantidadEntradas[zona]-1],
+                promedios,
+                predicciones,
+                "reporte.txt"
+            );
         }
     } while (opcion != 0);
 
@@ -93,18 +107,5 @@ void imprimirDatosZona(float datos[][4], int cantidadEntradas) {
     printf("PM2.5\tNO2\tSO2\tCO2\n");
     for (int i = 0; i < cantidadEntradas; i++) {
         printf("%.2f\t%.2f\t%.2f\t%.2f\n", datos[i][0], datos[i][1], datos[i][2], datos[i][3]);
-    }
-}
-
-// Función para imprimir los promedios históricos de todas las zonas
-void imprimirPromediosHistoricosTodasLasZonas(float datos[NUM_ZONAS][30][4], int cantidadEntradas[NUM_ZONAS], const char* nombresZonas[NUM_ZONAS]) {
-    for (int zona = 0; zona < NUM_ZONAS; zona++) {
-        float promedios[4] = {0};
-        calcularPromediosHistoricos(datos[zona], cantidadEntradas[zona], promedios);
-        printf("\nPromedios históricos de la zona %s:\n", nombresZonas[zona]);
-        printf("PM2.5: %.2f\n", promedios[0]);
-        printf("NO2:   %.2f\n", promedios[1]);
-        printf("SO2:   %.2f\n", promedios[2]);
-        printf("CO2:   %.2f\n", promedios[3]);
     }
 }

@@ -15,5 +15,7 @@ void emitirAlertas(float prediccion[4]);
 void calcularPromediosHistoricos(float datos[][4], int cantidad, float promedios[4]);
 void generarRecomendaciones(float actuales[4], float prediccion[4]);
 void exportarDatosReporte(float actuales[4], float prediccion[4], const char* nombreArchivo);
+void exportarDatosReporteCompleto(const char* nombreZona, float actuales[4], float promedios[4], float prediccion[4], const char* nombreArchivo);
+void exportarTodosDatosZona(const char* nombreZona, float datos[][4], int cantidadEntradas, const char* nombreArchivo);
 
 #endif /* FUNCIONES_H */

@@ -1,9 +1,9 @@
 // filepath: c:\Users\arian\OneDrive\Documents\6to semestre\Programación I\PI-MI VERSION\CODIGO\funciones.c
 
+#include "funciones.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "funciones.h"
 
 // Constantes para los límites aceptables
 #define LIMITE_PM25 15
@@ -67,7 +67,7 @@ void generarRecomendaciones(float actuales[4], float prediccion[4]) {
         printf("Mitigacion: Controlar emisiones de CO2.\n");
 }
 
-// Exportar los datos a un archivo de reporte
+// Exportar los datos a un archivo de reporte (simple)
 void exportarDatosReporte(float actuales[4], float prediccion[4], const char* nombreArchivo) {
     FILE *archivo = fopen(nombreArchivo, "a");
     if (archivo != NULL) {
@@ -81,6 +81,22 @@ void exportarDatosReporte(float actuales[4], float prediccion[4], const char* no
     }
 }
 
+// Exportar reporte completo
+void exportarDatosReporteCompleto(const char* nombreZona, float actuales[4], float promedios[4], float prediccion[4], const char* nombreArchivo) {
+    FILE* archivo = fopen(nombreArchivo, "a");
+    if (!archivo) return;
+    fprintf(archivo, "\n--- Reporte de la zona %s ---\n", nombreZona);
+    if (actuales)
+        fprintf(archivo, "Actuales: PM2.5=%.2f, NO2=%.2f, SO2=%.2f, CO2=%.2f\n", actuales[0], actuales[1], actuales[2], actuales[3]);
+    if (promedios)
+        fprintf(archivo, "Promedios: PM2.5=%.2f, NO2=%.2f, SO2=%.2f, CO2=%.2f\n", promedios[0], promedios[1], promedios[2], promedios[3]);
+    if (prediccion)
+        fprintf(archivo, "Predicción: PM2.5=%.2f, NO2=%.2f, SO2=%.2f, CO2=%.2f\n", prediccion[0], prediccion[1], prediccion[2], prediccion[3]);
+    fprintf(archivo, "-------------------------------\n");
+    fclose(archivo);
+}
+
+// Leer datos desde un archivo CSV
 void leerDatosCSV(const char* nombreArchivo, float datos[][4], int* cantidadEntradas) {
     FILE* archivo = fopen(nombreArchivo, "r");
     if (!archivo) {
@@ -102,5 +118,18 @@ void leerDatosCSV(const char* nombreArchivo, float datos[][4], int* cantidadEntr
         }
     }
     *cantidadEntradas = fila;
+    fclose(archivo);
+}
+
+// Exportar todos los datos de una zona a un archivo
+void exportarTodosDatosZona(const char* nombreZona, float datos[][4], int cantidadEntradas, const char* nombreArchivo) {
+    FILE* archivo = fopen(nombreArchivo, "a");
+    if (!archivo) return;
+    fprintf(archivo, "\n--- Todos los datos de la zona %s ---\n", nombreZona);
+    fprintf(archivo, "PM2.5\tNO2\tSO2\tCO2\n");
+    for (int i = 0; i < cantidadEntradas; i++) {
+        fprintf(archivo, "%.2f\t%.2f\t%.2f\t%.2f\n", datos[i][0], datos[i][1], datos[i][2], datos[i][3]);
+    }
+    fprintf(archivo, "-------------------------------\n");
     fclose(archivo);
 }
