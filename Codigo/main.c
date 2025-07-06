@@ -75,9 +75,21 @@ int main() {
         else if (opcion == 2) {
             float promedios[4] = {0};
             calcularPromediosHistoricos(datos[zona], cantidadEntradas[zona], promedios);
+
+            // Imprimir en pantalla
+            printf("\n--- Promedios históricos de la zona %s ---\n", nombresZonas[zona]);
+            printf("Actuales: PM2.5=%.2f, NO2=%.2f, SO2=%.2f, CO2=%.2f\n",
+                datos[zona][cantidadEntradas[zona]-1][0],
+                datos[zona][cantidadEntradas[zona]-1][1],
+                datos[zona][cantidadEntradas[zona]-1][2],
+                datos[zona][cantidadEntradas[zona]-1][3]);
+            printf("Promedios: PM2.5=%.2f, NO2=%.2f, SO2=%.2f, CO2=%.2f\n",
+                promedios[0], promedios[1], promedios[2], promedios[3]);
+
+            // Exportar ambos al reporte
             exportarDatosReporteCompleto(
                 nombresZonas[zona],
-                NULL,
+                datos[zona][cantidadEntradas[zona]-1],
                 promedios,
                 NULL,
                 "reporte.txt"

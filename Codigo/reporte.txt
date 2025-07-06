@@ -37,7 +37,3 @@ PM2.5	NO2	SO2	CO2
 Actuales: PM2.5=73.00, NO2=23.00, SO2=2.00, CO2=8.00
 Promedios: PM2.5=50.60, NO2=30.17, SO2=2.43, CO2=7.53
 -------------------------------
-
---- Reporte de la zona BELISARIO ---
-Promedios: PM2.5=50.60, NO2=30.17, SO2=2.43, CO2=7.53
--------------------------------
