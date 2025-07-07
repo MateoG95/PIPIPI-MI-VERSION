@@ -25,12 +25,13 @@ const char* nombresArchivos[NUM_ZONAS] = {
 void imprimirDatosZona(float datos[][4], float temperaturas[], int cantidadEntradas);
 
 int main() {
-    float datos[NUM_ZONAS][30][4]; // Máximo 30 entradas por zona
-    float temperaturas[NUM_ZONAS][30]; // Temperaturas por zona
+    float datos[NUM_ZONAS][30][4];
+    float temperaturas[NUM_ZONAS][30];
     int cantidadEntradas[NUM_ZONAS] = {0};
     int opcion, zona;
+    char buffer[16];
 
-    // Leer todos los datos al inicio (ajusta leerDatosCSV para llenar temperaturas)
+    // Leer todos los datos al inicio
     for (int i = 0; i < NUM_ZONAS; i++) {
         leerDatosCSVConTemperatura(nombresArchivos[i], datos[i], temperaturas[i], &cantidadEntradas[i]);
     }
@@ -43,7 +44,25 @@ int main() {
         printf("4) Calcular las predicciones de una zona\n");
         printf("0) Salir\n");
         printf("Seleccione una opcion: ");
-        scanf("%d", &opcion);
+
+        // Validación de opción
+        while (1) {
+            fgets(buffer, sizeof(buffer), stdin);
+            size_t len = strlen(buffer);
+            if (len > 0 && buffer[len-1] == '\n') buffer[len-1] = '\0';
+            int valido = 1;
+            for (size_t i = 0; i < strlen(buffer); i++) {
+                if (buffer[i] < '0' || buffer[i] > '9') {
+                    valido = 0;
+                    break;
+                }
+            }
+            if (valido && strlen(buffer) > 0) {
+                opcion = atoi(buffer);
+                if (opcion >= 0 && opcion <= 4) break;
+            }
+            printf("Opcion invalida. Intente de nuevo: ");
+        }
 
         if (opcion == 0) break;
 
@@ -52,12 +71,24 @@ int main() {
             printf("%d) %s\n", i + 1, nombresZonas[i]);
         }
         printf("Ingrese el numero de la zona: ");
-        scanf("%d", &zona);
-        zona--; // Ajustar a índice
 
-        if (zona < 0 || zona >= NUM_ZONAS) {
-            printf("Zona invalida.\n");
-            continue;
+        // Validación de zona
+        while (1) {
+            fgets(buffer, sizeof(buffer), stdin);
+            size_t len = strlen(buffer);
+            if (len > 0 && buffer[len-1] == '\n') buffer[len-1] = '\0';
+            int valido = 1;
+            for (size_t i = 0; i < strlen(buffer); i++) {
+                if (buffer[i] < '0' || buffer[i] > '9') {
+                    valido = 0;
+                    break;
+                }
+            }
+            if (valido && strlen(buffer) > 0) {
+                zona = atoi(buffer) - 1;
+                if (zona >= 0 && zona < NUM_ZONAS) break;
+            }
+            printf("Zona invalida. Intente de nuevo: ");
         }
 
         if (opcion == 1) {
