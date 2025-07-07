@@ -1,0 +1,161 @@
+
+--- Todos los datos de la zona BELISARIO ---
+PM2.5  NO2     SO2     CO2     TEMP    
+17.00  26.00   1.00    9.00    11.15   
+71.00  20.00   2.00    8.00    11.92   
+51.00  38.00   3.00    10.00   12.30   
+62.00  38.00   2.00    10.00   12.03   
+60.00  34.00   3.00    11.00   11.37   
+57.00  20.00   3.00    2.00    10.95   
+31.00  12.00   5.00    6.00    13.53   
+56.00  35.00   2.00    10.00   14.77   
+49.00  30.00   2.00    10.00   14.76   
+60.00  24.00   2.00    7.00    11.67   
+43.00  33.00   2.00    13.00   12.20   
+50.00  40.00   2.00    7.00    11.25   
+49.00  34.00   2.00    6.00    10.23   
+47.00  25.00   3.00    6.00    11.91   
+49.00  32.00   3.00    6.00    13.48   
+51.00  35.00   3.00    6.00    12.52   
+53.00  30.00   2.00    5.00    11.85   
+52.00  24.00   2.00    3.00    12.63   
+29.00  31.00   2.00    4.00    12.63   
+39.00  35.00   1.00    4.00    14.00   
+41.00  33.00   2.00    7.00    13.54   
+52.00  38.00   2.00    7.00    12.43   
+51.00  33.00   3.00    7.00    13.44   
+48.00  23.00   4.00    9.00    13.74   
+59.00  31.00   3.00    10.00   12.35   
+67.00  43.00   2.00    8.00    10.55   
+60.00  28.00   1.00    6.00    11.44   
+35.00  30.00   3.00    10.00   10.95   
+56.00  27.00   4.00    11.00   12.11   
+73.00  23.00   2.00    8.00    13.91   
+-------------------------------
+
+--- Reporte de la zona BELISARIO ---
+Actuales: PM2.5=73.00, NO2=23.00, SO2=2.00, CO2=8.00, TEMP=13.91
+-------------------------------
+
+--- Reporte de la zona BELISARIO ---
+Promedios: PM2.5=50.60, NO2=30.17, SO2=2.43, CO2=7.53, TEMP=12.39
+-------------------------------
+
+--- Reporte de la zona BELISARIO ---
+Prediccion: PM2.5=51.44, NO2=30.38, SO2=2.47, CO2=7.41, TEMP=12.45
+-------------------------------
+ALERTAS Y MITIGACIONES:
+ALERTA: PM2.5 (51.44) MUY ALTO. Mitigacion: Suspender actividades al aire libre, restringir tráfico y emitir alerta sanitaria.
+ALERTA: NO2 (30.38) excede el limite OMS (25). Mitigacion: Limitar emisiones industriales y vehiculares.
+SO2 dentro de los limites OMS.
+ALERTA: CO2 (7.41) excede el limite OMS (4). Mitigacion: Mejorar ventilacion y reducir fuentes de combustion.
+ALERTA: Temperatura (12.45) MUY BAJA. Mitigaciones:
+  1) Vestirse con varias capas de ropa y proteger las extremidades expuestas (manos, pies, cabeza, cuello, cara).
+  2) Mantenerse hidratado y alimentado.
+-------------------------------
+
+--- Reporte de la zona CARAPUNGO ---
+Actuales: PM2.5=70.00, NO2=16.00, SO2=4.00, CO2=3.00, TEMP=12.34
+-------------------------------
+
+--- Reporte de la zona CENTRO ---
+Prediccion: PM2.5=47.08, NO2=23.24, SO2=3.52, CO2=6.54, TEMP=12.46
+-------------------------------
+ALERTAS Y MITIGACIONES:
+ALERTA: PM2.5 (47.08) MUY ALTO. Mitigacion: Suspender actividades al aire libre, restringir tráfico y emitir alerta sanitaria.
+NO2 dentro de los limites OMS.
+SO2 dentro de los limites OMS.
+ALERTA: CO2 (6.54) excede el limite OMS (4). Mitigacion: Mejorar ventilacion y reducir fuentes de combustion.
+ALERTA: Temperatura (12.46) MUY BAJA. Mitigaciones:
+  1) Vestirse con varias capas de ropa y proteger las extremidades expuestas (manos, pies, cabeza, cuello, cara).
+  2) Mantenerse hidratado y alimentado.
+-------------------------------
+
+--- Todos los datos de la zona CENTRO ---
+PM2.5  NO2     SO2     CO2     TEMP    
+11.00  22.00   1.00    7.00    11.57   
+64.00  18.00   2.00    3.00    11.98   
+40.00  25.00   1.00    8.00    12.38   
+58.00  28.00   1.00    11.00   13.87   
+57.00  38.00   2.00    9.00    11.19   
+54.00  44.00   1.00    7.00    12.38   
+35.00  28.00   1.00    9.00    13.44   
+43.00  24.00   1.00    9.00    14.44   
+7.00   22.00   2.00    6.00    10.65   
+67.00  24.00   1.00    7.00    10.95   
+34.00  19.00   2.00    9.00    11.88   
+47.00  27.00   2.00    9.00    11.23   
+55.00  22.00   1.00    6.00    11.25   
+47.00  26.00   2.00    6.00    14.03   
+43.00  24.00   2.00    5.00    13.03   
+40.00  23.00   2.00    6.00    12.54   
+50.00  23.00   5.00    5.00    14.44   
+49.00  15.00   3.00    4.00    12.10   
+30.00  22.00   2.00    4.00    13.37   
+41.00  26.00   2.00    3.00    12.41   
+35.00  32.00   4.00    5.00    14.54   
+46.00  36.00   3.00    5.00    11.78   
+43.00  15.00   4.00    5.00    10.44   
+48.00  18.00   5.00    8.00    11.44   
+53.00  21.00   6.00    9.00    13.44   
+62.00  20.00   5.00    8.00    13.12   
+57.00  21.00   4.00    5.00    12.34   
+33.00  22.00   7.00    8.00    11.37   
+48.00  18.00   8.00    9.00    12.11   
+67.00  24.00   1.00    7.00    13.11   
+-------------------------------
+
+--- Reporte de la zona CENTRO ---
+Promedios: PM2.5=45.47, NO2=24.23, SO2=2.77, CO2=6.73, TEMP=12.43
+-------------------------------
+
+--- Reporte de la zona CENTRO ---
+Actuales: PM2.5=67.00, NO2=24.00, SO2=1.00, CO2=7.00, TEMP=13.11
+-------------------------------
+
+--- Reporte de la zona CENTRO ---
+Prediccion: PM2.5=47.08, NO2=23.24, SO2=3.52, CO2=6.54, TEMP=12.46
+-------------------------------
+ALERTAS Y MITIGACIONES:
+ALERTA: PM2.5 (47.08) MUY ALTO. Mitigacion: Suspender actividades al aire libre, restringir tráfico y emitir alerta sanitaria.
+NO2 dentro de los limites OMS.
+SO2 dentro de los limites OMS.
+ALERTA: CO2 (6.54) excede el limite OMS (4). Mitigacion: Mejorar ventilacion y reducir fuentes de combustion.
+ALERTA: Temperatura (12.46) MUY BAJA. Mitigaciones:
+  1) Vestirse con varias capas de ropa y proteger las extremidades expuestas (manos, pies, cabeza, cuello, cara).
+  2) Mantenerse hidratado y alimentado.
+-------------------------------
+
+--- Todos los datos de la zona COTOCOLLAO ---
+PM2.5  NO2     SO2     CO2     TEMP    
+34.00  17.00   4.00    3.00    11.57   
+54.00  19.00   2.00    4.00    11.98   
+41.00  17.00   2.00    5.00    12.38   
+45.00  16.00   3.00    7.00    11.87   
+53.00  15.00   3.00    7.00    11.19   
+56.00  18.00   2.00    3.00    11.63   
+25.00  18.00   3.00    7.00    11.80   
+45.00  13.00   3.00    7.00    12.55   
+47.00  15.00   3.00    5.00    14.44   
+51.00  23.00   2.00    2.00    12.35   
+34.00  17.00   3.00    6.00    12.54   
+44.00  19.00   3.00    6.00    13.44   
+49.00  23.00   3.00    6.00    11.78   
+51.00  20.00   4.00    5.00    12.23   
+53.00  23.00   5.00    6.00    12.54   
+55.00  18.00   4.00    5.00    10.65   
+47.00  13.00   4.00    5.00    14.03   
+49.00  11.00   2.00    3.00    12.10   
+26.00  16.00   3.00    3.00    13.37   
+40.00  16.00   2.00    2.00    14.41   
+29.00  19.00   2.00    4.00    20.54   
+41.00  20.00   2.00    4.00    12.43   
+42.00  24.00   2.00    4.00    32.44   
+36.00  23.00   3.00    5.00    13.44   
+46.00  20.00   3.00    7.00    13.00   
+59.00  17.00   3.00    6.00    12.81   
+48.00  15.00   2.00    4.00    14.35   
+27.00  17.00   3.00    6.00    10.55   
+44.00  24.00   4.00    9.00    11.78   
+61.00  28.00   2.00    5.00    11.64   
+-------------------------------
