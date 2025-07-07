@@ -66,7 +66,7 @@ int main() {
         }
         else if (opcion == 2) {
             printf("\n--- Datos actuales de la zona %s ---\n", nombresZonas[zona]);
-            printf("PM2.5=%.2f, NO2=%.2f, SO2=%.2f, CO2=%.2f\n",
+            printf("%.2f\t%.2f\t%.2f\t%.2f\n",
                 datos[zona][cantidadEntradas[zona]-1][0],
                 datos[zona][cantidadEntradas[zona]-1][1],
                 datos[zona][cantidadEntradas[zona]-1][2],
@@ -84,7 +84,7 @@ int main() {
             float promedios[4] = {0};
             calcularPromediosHistoricos(datos[zona], cantidadEntradas[zona], promedios);
             printf("\n--- Promedios históricos de la zona %s ---\n", nombresZonas[zona]);
-            printf("PM2.5=%.2f, NO2=%.2f, SO2=%.2f, CO2=%.2f\n",
+            printf("%.2f\t%.2f\t%.2f\t%.2f\n",
                 promedios[0], promedios[1], promedios[2], promedios[3]);
             // Exportar solo los promedios
             exportarDatosReporteCompleto(
@@ -99,7 +99,7 @@ int main() {
             float predicciones[4] = {0};
             predecirNivelesFuturos(datos[zona], cantidadEntradas[zona], predicciones);
             printf("\n--- Predicciones de la zona %s ---\n", nombresZonas[zona]);
-            printf("PM2.5=%.2f, NO2=%.2f, SO2=%.2f, CO2=%.2f\n",
+            printf("%.2f\t%.2f\t%.2f\t%.2f\n",
                 predicciones[0], predicciones[1], predicciones[2], predicciones[3]);
             // Exportar solo las predicciones
             exportarDatosReporteCompleto(
