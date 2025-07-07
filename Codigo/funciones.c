@@ -74,7 +74,7 @@ void exportarDatosReporte(float actuales[4], float prediccion[4], const char* no
         if (actuales)
             fprintf(archivo, "Actuales: PM2.5=%.2f, NO2=%.2f, SO2=%.2f, CO2=%.2f\n", actuales[0], actuales[1], actuales[2], actuales[3]);
         if (prediccion)
-            fprintf(archivo, "Predicción: PM2.5=%.2f, NO2=%.2f, SO2=%.2f, CO2=%.2f\n", prediccion[0], prediccion[1], prediccion[2], prediccion[3]);
+            fprintf(archivo, "Prediccion: PM2.5=%.2f, NO2=%.2f, SO2=%.2f, CO2=%.2f\n", prediccion[0], prediccion[1], prediccion[2], prediccion[3]);
         fclose(archivo);
     } else {
         printf("Error al abrir el archivo para exportar datos.\n");
@@ -91,7 +91,7 @@ void exportarDatosReporteCompleto(const char* nombreZona, float actuales[4], flo
     if (promedios)
         fprintf(archivo, "Promedios: PM2.5=%.2f, NO2=%.2f, SO2=%.2f, CO2=%.2f\n", promedios[0], promedios[1], promedios[2], promedios[3]);
     if (prediccion)
-        fprintf(archivo, "Predicción: PM2.5=%.2f, NO2=%.2f, SO2=%.2f, CO2=%.2f\n", prediccion[0], prediccion[1], prediccion[2], prediccion[3]);
+        fprintf(archivo, "Prediccin: PM2.5=%.2f, NO2=%.2f, SO2=%.2f, CO2=%.2f\n", prediccion[0], prediccion[1], prediccion[2], prediccion[3]);
     fprintf(archivo, "-------------------------------\n");
     fclose(archivo);
 }
@@ -130,6 +130,52 @@ void exportarTodosDatosZona(const char* nombreZona, float datos[][4], int cantid
     for (int i = 0; i < cantidadEntradas; i++) {
         fprintf(archivo, "%.2f\t%.2f\t%.2f\t%.2f\n", datos[i][0], datos[i][1], datos[i][2], datos[i][3]);
     }
+    fprintf(archivo, "-------------------------------\n");
+    fclose(archivo);
+}
+
+void exportarAlertasYMitigaciones(float prediccion[4], const char* nombreArchivo) {
+    FILE* archivo = fopen(nombreArchivo, "a");
+    if (!archivo) return;
+
+    fprintf(archivo, "ALERTAS Y MITIGACIONES:\n");
+
+    // PM2.5
+    if (prediccion[0] > 35) {
+        fprintf(archivo, "ALERTA: PM2.5 (%.2f) MUY ALTO. Mitigacion: Suspender actividades al aire libre, restringir tráfico y emitir alerta sanitaria.\n", prediccion[0]);
+    } else if (prediccion[0] > 15) {
+        fprintf(archivo, "ALERTA: PM2.5 (%.2f) excede el limite OMS (15). Mitigacion: Reducir trafico vehicular y actividades al aire libre.\n", prediccion[0]);
+    } else {
+        fprintf(archivo, "PM2.5 dentro de los limites OMS.\n");
+    }
+
+    // NO2
+    if (prediccion[1] > 50) {
+        fprintf(archivo, "ALERTA: NO2 (%.2f) MUY ALTO. Mitigacion: Parar industrias y restringir circulación vehicular.\n", prediccion[1]);
+    } else if (prediccion[1] > 25) {
+        fprintf(archivo, "ALERTA: NO2 (%.2f) excede el limite OMS (25). Mitigacion: Limitar emisiones industriales y vehiculares.\n", prediccion[1]);
+    } else {
+        fprintf(archivo, "NO2 dentro de los limites OMS.\n");
+    }
+
+    // SO2
+    if (prediccion[2] > 80) {
+        fprintf(archivo, "ALERTA: SO2 (%.2f) MUY ALTO. Mitigacion: Cierre inmediato de fuentes industriales y alerta a la población.\n", prediccion[2]);
+    } else if (prediccion[2] > 40) {
+        fprintf(archivo, "ALERTA: SO2 (%.2f) excede el limite OMS (40). Mitigacion: Controlar emisiones de fabricas y quemas.\n", prediccion[2]);
+    } else {
+        fprintf(archivo, "SO2 dentro de los limites OMS.\n");
+    }
+
+    // CO2
+    if (prediccion[3] > 10) {
+        fprintf(archivo, "ALERTA: CO2 (%.2f) MUY ALTO. Mitigacion: Evacuar áreas cerradas y ventilar urgentemente.\n", prediccion[3]);
+    } else if (prediccion[3] > 4) {
+        fprintf(archivo, "ALERTA: CO2 (%.2f) excede el limite OMS (4). Mitigacion: Mejorar ventilacion y reducir fuentes de combustion.\n", prediccion[3]);
+    } else {
+        fprintf(archivo, "CO2 dentro de los limites OMS.\n");
+    }
+
     fprintf(archivo, "-------------------------------\n");
     fclose(archivo);
 }

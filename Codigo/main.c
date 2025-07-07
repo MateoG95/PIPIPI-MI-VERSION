@@ -36,9 +36,10 @@ int main() {
 
     do {
         printf("\n--- MENU PRINCIPAL ---\n");
-        printf("1) Iniciar los datos de una zona\n");
-        printf("2) Calcular los promedios de una zona\n");
-        printf("3) Predecir los datos de una zona\n");
+        printf("1) Cargar datos de una zona\n");
+        printf("2) Cargar los datos actuales (Mas recientes) de una zona\n");
+        printf("3) Calcular los promedios historicos de una zona\n");
+        printf("4) Calcular las predicciones de una zona\n");
         printf("0) Salir\n");
         printf("Seleccione una opcion: ");
         scanf("%d", &opcion);
@@ -62,51 +63,54 @@ int main() {
             printf("\n--- Datos de la zona %s ---\n", nombresZonas[zona]);
             imprimirDatosZona(datos[zona], cantidadEntradas[zona]);
             exportarTodosDatosZona(nombresZonas[zona], datos[zona], cantidadEntradas[zona], "reporte.txt");
-            float promedios[4] = {0};
-            calcularPromediosHistoricos(datos[zona], cantidadEntradas[zona], promedios);
-            exportarDatosReporteCompleto(
-                nombresZonas[zona],
-                datos[zona][cantidadEntradas[zona]-1],
-                promedios,
-                NULL,
-                "reporte.txt"
-            );
         }
         else if (opcion == 2) {
-            float promedios[4] = {0};
-            calcularPromediosHistoricos(datos[zona], cantidadEntradas[zona], promedios);
-
-            // Imprimir en pantalla
-            printf("\n--- Promedios históricos de la zona %s ---\n", nombresZonas[zona]);
-            printf("Actuales: PM2.5=%.2f, NO2=%.2f, SO2=%.2f, CO2=%.2f\n",
+            printf("\n--- Datos actuales de la zona %s ---\n", nombresZonas[zona]);
+            printf("PM2.5=%.2f, NO2=%.2f, SO2=%.2f, CO2=%.2f\n",
                 datos[zona][cantidadEntradas[zona]-1][0],
                 datos[zona][cantidadEntradas[zona]-1][1],
                 datos[zona][cantidadEntradas[zona]-1][2],
                 datos[zona][cantidadEntradas[zona]-1][3]);
-            printf("Promedios: PM2.5=%.2f, NO2=%.2f, SO2=%.2f, CO2=%.2f\n",
-                promedios[0], promedios[1], promedios[2], promedios[3]);
-
-            // Exportar ambos al reporte
+            // Exportar solo los datos actuales
             exportarDatosReporteCompleto(
                 nombresZonas[zona],
                 datos[zona][cantidadEntradas[zona]-1],
-                promedios,
+                NULL,
                 NULL,
                 "reporte.txt"
             );
         }
         else if (opcion == 3) {
-            float predicciones[4] = {0};
-            predecirNivelesFuturos(datos[zona], cantidadEntradas[zona], predicciones);
             float promedios[4] = {0};
             calcularPromediosHistoricos(datos[zona], cantidadEntradas[zona], promedios);
+            printf("\n--- Promedios históricos de la zona %s ---\n", nombresZonas[zona]);
+            printf("PM2.5=%.2f, NO2=%.2f, SO2=%.2f, CO2=%.2f\n",
+                promedios[0], promedios[1], promedios[2], promedios[3]);
+            // Exportar solo los promedios
             exportarDatosReporteCompleto(
                 nombresZonas[zona],
-                datos[zona][cantidadEntradas[zona]-1],
+                NULL,
                 promedios,
+                NULL,
+                "reporte.txt"
+            );
+        }
+        else if (opcion == 4) {
+            float predicciones[4] = {0};
+            predecirNivelesFuturos(datos[zona], cantidadEntradas[zona], predicciones);
+            printf("\n--- Predicciones de la zona %s ---\n", nombresZonas[zona]);
+            printf("PM2.5=%.2f, NO2=%.2f, SO2=%.2f, CO2=%.2f\n",
+                predicciones[0], predicciones[1], predicciones[2], predicciones[3]);
+            // Exportar solo las predicciones
+            exportarDatosReporteCompleto(
+                nombresZonas[zona],
+                NULL,
+                NULL,
                 predicciones,
                 "reporte.txt"
             );
+            // Exportar alertas y mitigaciones SOLO aquí
+            exportarAlertasYMitigaciones(predicciones, "reporte.txt");
         }
     } while (opcion != 0);
 
